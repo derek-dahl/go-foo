@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 type Foo struct {
@@ -24,8 +26,12 @@ func singleRecord(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleRequests() {
-	http.HandleFunc("/", singleRecord)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	router := mux.NewRouter().StrictSlash(true)
+
+	router.HandleFunc("/foo", getFoo).Methods("GET")
+	router.HandleFunc("/foo", postFoo).Methods("POST")
+	router.HandleFunc("/foo", deleteFoo).Methods("DELETE")
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func main() {
