@@ -45,5 +45,9 @@ func handleRequests() {
 }
 
 func main() {
+	fooCollection = append(fooCollection, Foo{
+		Name: "Ronnie James Dio",
+		Id:   "0",
+	})
 	handleRequests()
 }
