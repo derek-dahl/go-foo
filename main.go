@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/google/uuid"
 	"github.com/gorilla/mux"
 )
 
@@ -23,7 +24,9 @@ func deleteFoo(w http.ResponseWriter, r *http.Request) {
 }
 
 func postFoo(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Test POST endpoint hit")
+	//Generate uuid here
+	uuid := uuid.New
+	fmt.Fprintf(w, "Test POST endpoint hit", uuid)
 }
 
 func getFoo(w http.ResponseWriter, r *http.Request) {
