@@ -16,7 +16,17 @@ type Foo struct {
 
 type Foos []Foo
 
-func singleRecord(w http.ResponseWriter, r *http.Request) {
+var fooCollection []Foo
+
+func deleteFoo(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Test DELETE endpoint hit")
+}
+
+func postFoo(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Test POST endpoint hit")
+}
+
+func getFoo(w http.ResponseWriter, r *http.Request) {
 	foos := Foos{
 		Foo{Name: "Test Guy Name", Id: "1234"},
 	}
