@@ -33,6 +33,8 @@ func getFoo(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Println("Single Record Endpoint Hit")
+func getFoos(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(foos)
 }
 
