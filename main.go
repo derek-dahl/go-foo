@@ -30,8 +30,6 @@ func postFoo(w http.ResponseWriter, r *http.Request) {
 }
 
 func getFoo(w http.ResponseWriter, r *http.Request) {
-	foos := Foos{
-		Foo{Name: "Test Guy Name", Id: "1234"},
 	}
 
 	fmt.Println("Single Record Endpoint Hit")
@@ -42,6 +40,9 @@ func main() {
 	//Init router
 	router := mux.NewRouter().StrictSlash(true)
 
+	// Mock Data - @todo - implement DB
+	foos = append(foos, Foo{Id: "1", Name: "Bob"})
+	foos = append(foos, Foo{Id: "2", Name: "Steve"})
 
 	// Route Handlers / Endpoints
 	router.HandleFunc("/foo/{id}", getFoo).Methods("GET")
