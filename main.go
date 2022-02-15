@@ -23,10 +23,12 @@ func deleteFoo(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r) // Get params
 	for index, item := range foos {
 		if item.Id == params["id"] {
+			w.WriteHeader(http.StatusNoContent)
 			foos = append(foos[:index], foos[index+1:]...)
 			break
 		}
 	}
+	w.WriteHeader(http.StatusNotFound)
 }
 
 // Create Single Foo
@@ -52,7 +54,7 @@ func getFoo(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	json.NewEncoder(w).Encode(&Foo{})
+	w.WriteHeader(http.StatusNotFound)
 }
 
 // Get All Foos
