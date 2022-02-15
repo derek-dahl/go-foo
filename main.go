@@ -10,9 +10,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Foo Struct (Model)
 type Foo struct {
-	Name string `json:"name"`
 	Id   string `json:"id"`
+	Name string `json:"name"`
 }
 
 type Foos []Foo
