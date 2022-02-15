@@ -23,7 +23,6 @@ func deleteFoo(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r) // Get params
 	for index, item := range foos {
 		if item.Id == params["id"] {
-			// @todo append only removing index and not record itself - implement removal of record
 			foos = append(foos[:index], foos[index+1:]...)
 			break
 		}
