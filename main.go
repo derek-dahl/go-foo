@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -18,8 +17,16 @@ type Foo struct {
 
 var foos []Foo
 
+// Delete single Foo
 func deleteFoo(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Test DELETE endpoint hit")
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r) // Get params
+	for index, item := range foos {
+		if item.Id == params["id"] {
+			foos = append(foos[:index], foos[index+1:]...)
+			break
+		}
+	}
 }
 
 // Create single Foo
