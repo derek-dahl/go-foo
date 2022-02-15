@@ -29,10 +29,21 @@ func postFoo(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Test POST endpoint hit", uuid)
 }
 
+// Get single Foo
 func getFoo(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	// Params Variable
+	params := mux.Vars(r) // Get params
+	//Loop through foos to find id
+	for _, item := range foos {
+		if item.Id == params["id"] {
+			json.NewEncoder(w).Encode(item)
+			return
+		}
 	}
+	json.NewEncoder(w).Encode(&Foo{})
+}
 
-	fmt.Println("Single Record Endpoint Hit")
 func getFoos(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(foos)
