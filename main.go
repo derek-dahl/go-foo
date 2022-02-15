@@ -60,7 +60,7 @@ func main() {
 	// Route Handlers / Endpoints
 	router.HandleFunc("/foo/{id}", getFoo).Methods("GET")
 	router.HandleFunc("/foos", getFoos).Methods("GET")
-	router.HandleFunc("/foos", createFoo).Methods("POST")
+	router.HandleFunc("/foo", createFoo).Methods("POST")
 	router.HandleFunc("/foo/{id}", deleteFoo).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
