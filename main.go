@@ -17,7 +17,7 @@ type Foo struct {
 
 var foos []Foo
 
-// Delete single Foo
+// Delete Single Foo
 func deleteFoo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r) // Get params
@@ -29,7 +29,7 @@ func deleteFoo(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Create single Foo
+// Create Single Foo
 func createFoo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var foo Foo
@@ -40,7 +40,7 @@ func createFoo(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(foo)
 }
 
-// Get single Foo
+// Get Single Foo
 func getFoo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	// Params Variable
@@ -55,6 +55,7 @@ func getFoo(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&Foo{})
 }
 
+// Get All Foos
 func getFoos(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(foos)
