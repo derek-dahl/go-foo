@@ -16,9 +16,7 @@ type Foo struct {
 	Name string `json:"name"`
 }
 
-type Foos []Foo
-
-var fooCollection []Foo
+var foos []Foo
 
 func deleteFoo(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Test DELETE endpoint hit")
