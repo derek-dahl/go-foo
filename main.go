@@ -23,10 +23,15 @@ func deleteFoo(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Test DELETE endpoint hit")
 }
 
-func postFoo(w http.ResponseWriter, r *http.Request) {
-	//Generate uuid here
-	uuid := uuid.New
-	fmt.Fprintf(w, "Test POST endpoint hit", uuid)
+// Create single Foo
+func createFoo(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var foo Foo
+	_ = json.NewDecoder(r.Body).Decode(&foo)
+	uuid := uuid.New()
+	foo.Id = uuid.String()
+	foos = append(foos, foo)
+	json.NewEncoder(w).Encode(foo)
 }
 
 // Get single Foo
