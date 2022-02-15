@@ -23,6 +23,7 @@ func deleteFoo(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r) // Get params
 	for index, item := range foos {
 		if item.Id == params["id"] {
+			// @todo append only removing index and not record itself - implement removal of record
 			foos = append(foos[:index], foos[index+1:]...)
 			break
 		}
@@ -64,10 +65,6 @@ func getFoos(w http.ResponseWriter, r *http.Request) {
 func main() {
 	//Init router
 	router := mux.NewRouter().StrictSlash(true)
-
-	// Mock Data - @todo - implement DB
-	foos = append(foos, Foo{Id: "1", Name: "Bob"})
-	foos = append(foos, Foo{Id: "2", Name: "Steve"})
 
 	// Route Handlers / Endpoints
 	router.HandleFunc("/foo/{id}", getFoo).Methods("GET")
